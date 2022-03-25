@@ -4,9 +4,3 @@ services:
     build: .
     ports:
       - 5432:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: pocdb
-    volumes:
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
