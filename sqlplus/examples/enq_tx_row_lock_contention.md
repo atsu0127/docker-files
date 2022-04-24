@@ -100,7 +100,7 @@ select 'ALTER SYSTEM KILL SESSION ''' || inst_id || ', ' || sid || ', ' || seria
 from gv$session where sid =&sid;
 
 -- killする
-ALTER SYSTEM KILL SESSION '<INST_ID>, <SID>, <SERIAL#>' FORCE;
+ALTER SYSTEM KILL SESSION '<INST_ID>, <SID>, <SERIAL#>' IMMEDIATE;
 ```
 
 - 確認
