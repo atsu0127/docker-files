@@ -2,7 +2,9 @@
 
 これは待機イベント`enq: TX - row lock contention`が発生したときに、その原因特定の方法を記載しています。
 
-`WAITEVENT: "enq: TX - row lock contention" Reference Note (Doc ID 1966048.1)`と[こちらのサイト](https://www.ex-em.co.jp/blog/enq-tx-row-lock-contention/)を参考にしています。特に SQL はほぼそのまま記載させていただいています。
+`WAITEVENT: "enq: TX - row lock contention" Reference Note (Doc ID 1966048.1)`と[こちらのサイト](https://www.ex-em.co.jp/blog/enq-tx-row-lock-contention/)を参考にしています。
+
+特に SQL はほぼそのまま記載させていただいています。
 
 ## 手順
 
