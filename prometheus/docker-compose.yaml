@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./config/prometheus.yml:/etc/prometheus.yml
+      - ./config/rules.yml:/etc/rules.yml
       - ./prometheus-data:/prometheus
     command:
       - '--config.file=/etc/prometheus.yml'
@@ -16,6 +17,15 @@ services:
       - '--web.enable-lifecycle'
     ports:
       - 9090:9090
+  alertmanager-server:
+    image: prom/alertmanager
+    container_name: alertmanager-server
+    volumes:
+      - ./config/alertmanager.yml:/etc/alertmanager.yml
+    command: "--config.file=/etc/alertmanager.yml"
+    ports:
+      - 9093:9093
+    restart: unless-stopped
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
