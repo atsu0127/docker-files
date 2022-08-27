@@ -34,3 +34,11 @@ services:
       - ./node-exporter-volume:/volume_dir
     expose:
       - 9100
+  grafana-server:
+    image: grafana/grafana
+    container_name: grafana-server
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana-data:/var/lib/grafana
