@@ -1,6 +1,13 @@
 # Prometheus
 Prometheusの公式イメージを使ってServerたてます
 
+## 構成
+以下のコンポーネントがあります。気が向いたら増やします。
+- prometheus
+- alertmanager
+- node-exporter
+- grafana
+
 ## 使い方
 
 ### 下準備
