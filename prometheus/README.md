@@ -21,3 +21,12 @@ docker-compose up -d
 ```
 
 その後`http://localhost:9090`にアクセスしてください。
+
+grafanaにアクセスする場合は`http://localhost:3000`にアクセスしてください。
+
+### grafanaの設定
+grafanaにアクセスし`admin/admin`でログインする。
+
+その後DataSourceで`http://prometheus-server:9090`を指定してください。
+
+あとは適当にDashboard作ってください。
