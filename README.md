@@ -19,3 +19,6 @@ Docker用のファイルを置いておきます
 - config/alertmanager.yml…Alertmanagerの設定です、Slackでの通知設定です
 - node-exporter-volume…node-exporterコンテナの`/volume_dir`にマウントされます。ファイルを置いたりして、メトリックの変動を確認できます
 - prometheus-data…prometheusのデータが入ります
+
+### Linux-structure
+[Linuxのしくみ](https://gihyo.jp/book/2022/978-4-297-13148-7)を実施するための環境です。

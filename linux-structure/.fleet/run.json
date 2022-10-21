@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "type": "docker-compose-up",
+            "name": "compose",
+            "files": ["$PROJECT_DIR$/docker-compose.yaml"]
+        },
+    ]
+}
