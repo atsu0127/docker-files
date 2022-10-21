@@ -1,0 +1,22 @@
+[{
+    "targets": ["node-exporter:9100"],
+    "labels": {
+      "team": "infra_rename",
+      "job": "node"
+    }
+  },
+  {
+    "targets": ["node-exporter2:9100"],
+    "labels": {
+      "team": "infra_add",
+      "job": "node2"
+    }
+  },
+  {
+    "targets": ["localhost:9090"],
+    "labels": {
+      "team": "monitoring",
+      "job": "prometheus"
+    }
+  }
+]
