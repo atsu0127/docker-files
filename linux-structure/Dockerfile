@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+wFROM ubuntu:20.04
 
 # タイムゾーン設定
 ENV DEBIAN_FRONTEND=noninteractive
