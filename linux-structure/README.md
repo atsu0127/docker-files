@@ -13,3 +13,6 @@ docker-compose up -d
 ## sshしてログイン
 ssh -l <username> -p 22222 localhost
 ```
+
+## 注意点
+- 仮想マシン・コンテナ系のスクリプトは書いてないです
