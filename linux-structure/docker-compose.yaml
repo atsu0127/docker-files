@@ -3,6 +3,6 @@ services:
     linux-structure:
         build: .
         ports:
-            - 22222:22
+            - "22222:22"
         volumes:
             - ./work:/home/atabata/work

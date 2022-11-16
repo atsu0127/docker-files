@@ -25,13 +25,14 @@ RUN apt update && apt install -y \
     libvirt-daemon-system \
     zsh \
     strace \
+    psmisc \
  && adduser `id -un` libvirt \
  && adduser `id -un` libvirt-qemu \
  && adduser `id -un` kvm
 
 # 個人ユーザ作成
 RUN apt update && apt install -y sudo
-RUN useradd -m -s $(which zsh) atabata
+RUN useradd -m -s $(which bash) atabata
 RUN echo 'atabata:pass' | chpasswd
 RUN gpasswd -a atabata sudo
 
