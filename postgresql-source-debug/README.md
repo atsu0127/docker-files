@@ -17,11 +17,11 @@ docker で postgresql のデバッグ実行をするためのコンテナです�
 docker build -t postgresql-source-debug:latest .
 CONT=`docker run -it -d --cap-add=SYS_PTRACE --security-opt seccomp=unconfined postgresql-source-debug:latest`
 
-# コンテナアクセス
-docker exec -it ${CONT} bash
-
 # コンテナ名確認(後で使います)
 docker ps
+
+# コンテナアクセス
+docker exec -it ${CONT} bash
 
 # psqlアクセス
 su - postgres
