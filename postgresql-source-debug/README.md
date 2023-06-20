@@ -54,7 +54,7 @@ VSCodeでデバッグ実行します([参考](https://taityo-diary.hatenablog.jp
           "type": "cppdbg",
           "request": "attach",
           "program":"/var/lib/pgsql/13/bin/postgres",
-          "processId": <↑で確認したprocess>,
+          "processId": "↑で確認したprocess",
           "MIMode": "gdb",
           "miDebuggerPath": "/usr/bin/gdb"
       }
