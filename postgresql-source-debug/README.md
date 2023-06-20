@@ -43,7 +43,7 @@ VSCodeでデバッグ実行します([参考](https://taityo-diary.hatenablog.jp
 6. デバッグを実行します。
 7. ブレークポイントを`/workspace/postgresql-13.5/src/backend/executor/nodeResult.c`の70行目(`ResultState`を定義している部分)において、psqlでselectなどを実行すればデバッグ実行できます
 
-- launch.jsonの内容は以下
+launch.jsonの内容は以下
 
 ```json
 {
