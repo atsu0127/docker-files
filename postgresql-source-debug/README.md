@@ -68,3 +68,8 @@ launch.jsonの内容は以下
 ```bash
 docker stop $CONT && docker rm $CONT
 ```
+
+## 参考
+- https://taityo-diary.hatenablog.jp/entry/2023/02/10/074630
+- https://zatoima.github.io/postgresql-gdb-postgresql-install.html
+- https://masahikosawada.github.io/2020/12/14/PostgreSQL_source_code_directories/
