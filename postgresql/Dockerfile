@@ -1,15 +1,55 @@
-FROM centos:centos7
+FROM rockylinux:8.8
 
-RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
-  yum install -y postgresql13-13.5-1PGDG.rhel7.aarch64 postgresql13-server-13.5-1PGDG.rhel7.aarch64 less
+# 必要なパッケージ
+RUN dnf install -y epel-release && \
+    dnf install -y gcc readline-devel zlib-devel wget make sudo procps-ng supervisor
 
-ENV PATH $PATH:/usr/pgsql-13/bin
-ENV PGDATA /var/lib/pgsql/13/data
+# root
+RUN echo "root:root" | chpasswd
 
+# ユーザ作って権限つける
+RUN groupadd -g 1101 postgres && \
+    useradd -u 1101 -g postgres -G postgres -d /var/lib/pgsql postgres && \
+    echo "postgres:postgres" | chpasswd && \
+    chown -R postgres:postgres /var/lib/pgsql && \
+    chmod -R 755 /var/lib/pgsql && \
+    mkdir /workspace && \
+    chown -R postgres:postgres /workspace && \
+    chmod -R 755 /workspace && \
+    mkdir /var/run/postgresql && \
+    chown -R postgres:postgres /var/run/postgresql && \
+    chmod 700 /var/run/postgresql
+
+# ユーザかえる
+WORKDIR /workspace
 USER postgres
-COPY --chown=postgres:postgres ./scripts/entrypoint.sh ./scripts/init.sql /init/
+
+# postgresql
+RUN wget https://download.postgresql.org/pub/source/v13.5/postgresql-13.5.tar.gz && \
+    tar zxvf postgresql-13.5.tar.gz && \
+    cd postgresql-13.5 && \
+    ./configure --prefix=/var/lib/pgsql/13 && \
+    make && \
+    make install
+
+# 環境変数
+ENV PATH $PATH:/var/lib/pgsql/13/bin/
+ENV PGDATA /var/lib/pgsql/13/data
+ENV PGHOST /var/run/postgresql
+
+# 起動用ファイル配置
+COPY --chown=postgres:postgres ./scripts/*.sql /init/
 COPY --chown=postgres:postgres ./config/postgresql.conf /etc/postgresql/postgresql.conf
-RUN chmod 755 /init/entrypoint.sh
+RUN initdb -E UTF8 --locale=C && \
+    pg_ctl -w start -D ${PGDATA} "-o -c config_file=/etc/postgresql/postgresql.conf" && \
+    psql -f /init/init.sql && \
+    echo 'export PATH=${PATH}:/var/lib/pgsql/13/bin/' >> ~/.bashrc && \
+    echo 'export PGHOST=/var/run/postgresql' >> ~/.bashrc && \
+    echo 'export PGDATA=/var/lib/pgsql/13/data' >> ~/.bashrc
+
+# スタート
+WORKDIR /
+USER root
+COPY ./config/supervisord.conf /etc/
 EXPOSE 5432
-ENTRYPOINT ["/init/entrypoint.sh"]
-CMD ["/bin/sh", "-c", "while :; do sleep 3; done"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

@@ -7,15 +7,25 @@ docker で postgresql の検証をするためのスクリプトと手順群で�
 以下でできます
 
 ```bash
-docker-compose build
-docker-compose up -d
-docker exec -it <コンテナ名> /bin/bash
+# コンテナ実行
+docker build -t postgresql:latest .
+CONT=`docker run -it -d postgresql:latest`
+
+# コンテナ名確認(後で使います)
+docker ps
+
+# コンテナアクセス
+docker exec -it ${CONT} bash
+
+# psqlアクセス
+su - postgres
+psql
 ```
 
 消したかったら以下
 
 ```bash
-docker-compose down -v
+docker stop $CONT && docker rm $CONT
 ```
 
 ## PITR の検証手順
