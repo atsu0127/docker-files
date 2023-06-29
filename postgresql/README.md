@@ -31,3 +31,7 @@ docker stop $CONT && docker rm $CONT
 ## PITR の検証手順
 
 [手順](./examples/pitr.md)
+
+## Cluster 化の効果検証
+
+[手順](./examples/cluster.md)
