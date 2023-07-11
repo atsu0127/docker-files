@@ -3,9 +3,15 @@ Docker用のファイルを置いておきます
 
 ## 概要
 ### postgresql
-以下のファイルが含まれています。`backup/restore`などのPoCのために使います。
-- Dockefile…`config/postgresql.conf`を配置します
-- docker-compose.yaml…基本的に永続化はしないで、コンテナ内で検証する方針です
+種々のpostgresqlの検証に使います。
+
+現状以下の検証手順があります。
+- pitr
+- reindex
+- cluster
+
+### postgresql-source-debug
+基本postgresqlと同じですが、debugオプションをつけてビルドしてます。
 
 ### SQL\*Plus
 以下のファイルが含まれています。M1 Macにsqlplus入れるのがだるくて作りました。

@@ -35,3 +35,7 @@ docker stop $CONT && docker rm $CONT
 ## Cluster 化の効果検証
 
 [手順](./examples/cluster.md)
+
+## Reindex の効果検証
+
+[手順](./examples/reindex.md)
