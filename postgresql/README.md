@@ -11,7 +11,7 @@ docker で postgresql の検証をするためのスクリプトと手順群で�
 docker build -t postgresql:latest .
 CONT=`docker run -it -d postgresql:latest`
 
-# コンテナ名確認(後で使います)
+# コンテナ名確認
 docker ps
 
 # コンテナアクセス

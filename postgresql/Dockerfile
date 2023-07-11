@@ -30,7 +30,11 @@ RUN wget https://download.postgresql.org/pub/source/v13.5/postgresql-13.5.tar.gz
     cd postgresql-13.5 && \
     ./configure --prefix=/var/lib/pgsql/13 && \
     make && \
-    make install
+    make install && \
+    cd contrib && \
+    make && \
+    make install && \
+    cd ..
 
 # 環境変数
 ENV PATH $PATH:/var/lib/pgsql/13/bin/
