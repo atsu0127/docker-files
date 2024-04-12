@@ -22,3 +22,7 @@
 ```bash
 ORDS has been successfully configured.
 ```
+
+## 参考
+- https://qiita.com/satokaz/items/bd2e9514c3dbc2d8f313
+- https://docs.oracle.com/cd/F87063_01/ordig/installing-and-configuring-oracle-rest-data-services.html
