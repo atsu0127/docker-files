@@ -1,0 +1,22 @@
+services:
+  oracledb:
+    image: container-registry.oracle.com/database/free:23.2.0.0
+    environment:
+      - ORACLE_PWD=oracle
+    ports:
+      - "1521:1521"
+    healthcheck:
+      test: sh /opt/oracledb/bin/healthcheck.sh
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    volumes:
+      - ./oracledb:/opt/oracledb
+  ords:
+    build: ./ords
+    ports:
+      - "8080:8080"
+    depends_on:
+      oracledb:
+        condition: service_healthy
