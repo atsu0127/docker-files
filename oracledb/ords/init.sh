@@ -6,6 +6,9 @@ set -eu -o pipefail
 LOG_FILE="/ords_installation.log"
 touch $LOG_FILE
 
+echo "wait for db in 30sec(start at $(date))"
+sleep 30
+
 # ORDSの設定と起動、ログファイルに出力
 ords --config /etc/ords/config install << EOF 2>&1 | tee $LOG_FILE &
 2
@@ -49,6 +52,33 @@ BEGIN
                        p_url_mapping_pattern => 'pdbadmin',
                        p_auto_rest_auth => FALSE);
 
+    commit;
+END;
+/
+exit;
+EOF
+
+echo "create jrd user"
+sqlplus sys/oracle@oracledb:1521/freepdb1 as sysdba << EOF
+CREATE USER JRD IDENTIFIED BY "welcome1" DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+GRANT DBA TO JRD;
+GRANT UNLIMITED TABLESPACE TO JRD;
+GRANT CTXAPP TO JRD;
+GRANT RESOURCE TO JRD;
+exit;
+EOF
+
+echo "enable ords in jrd user"
+sqlplus jrd/welcome1@oracledb:1521/freepdb1 << EOF
+select role from session_roles;
+BEGIN
+    ORDS.ENABLE_SCHEMA(
+        p_enabled => TRUE,
+        p_schema => 'JRD',
+        p_url_mapping_type => 'BASE_PATH',
+        p_url_mapping_pattern => 'jrd',
+        p_auto_rest_auth=> TRUE
+    );
     commit;
 END;
 /
