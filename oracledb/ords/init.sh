@@ -85,6 +85,35 @@ END;
 exit;
 EOF
 
+echo "create js_developer user"
+sqlplus sys/oracle@oracledb:1521/freepdb1 as sysdba << EOF
+CREATE USER js_developer IDENTIFIED BY "welcome1" DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+grant EXECUTE on javascript to js_developer;
+grant EXECUTE DYNAMIC MLE to js_developer;
+grant DB_DEVELOPER_ROLE to js_developer;
+grant create session to js_developer;
+grant CREATE ANY DIRECTORY to js_developer;
+GRANT UNLIMITED TABLESPACE TO JRD;
+exit;
+EOF
+
+echo "enable ords in js_developer user"
+sqlplus js_developer/welcome1@oracledb:1521/freepdb1 << EOF
+select role from session_roles;
+BEGIN
+    ORDS.ENABLE_SCHEMA(
+        p_enabled => TRUE,
+        p_schema => 'JS_DEVELOPER',
+        p_url_mapping_type => 'BASE_PATH',
+        p_url_mapping_pattern => 'js_developer',
+        p_auto_rest_auth=> TRUE
+    );
+    commit;
+END;
+/
+exit;
+EOF
+
 echo "ORDS has been successfully configured."
 
 tail -f /dev/null

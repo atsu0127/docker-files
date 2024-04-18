@@ -18,7 +18,9 @@
   - Started になった後に ords の install & 起動があるので、log を確認してお待ちください
   - 以下の文言が出力されたら`http://localhost:8080/ords/sql-developer`にアクセスして利用開始できます
     - ユーザは pdbadmin、パスワードは oracle です。
-    - または jrd/welcome1 でも入れます
+    - または目的ごとに以下のユーザがいます
+      - jrd/welcome1…`JSON Relation Duality`の検証用
+      - js_developer/welcome1…`Javascript In MLE`の検証用
 
 ```bash
 ORDS has been successfully configured.

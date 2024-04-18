@@ -1,10 +1,15 @@
-# JSON Duality
+# JSON Relation Duality
 
 以下の記事を試してみます。
 
 https://qiita.com/takuya_0301/items/d56628e22cdba8b222ed
 
 ## 手順
+
+### コンテナ接続
+```bash
+docker compose exec -it ords bash
+```
 
 ### 表など作成
 
