@@ -1,0 +1,17 @@
+name: macro_test
+description: マクロのテスト用.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: "^3.5.0-152"
+
+# Add regular dependencies here.
+dependencies:
+  json: ^0.20.2
+  macros: ^0.1.0-main.5
+
+dev_dependencies:
+  _fe_analyzer_shared: ^68.0.0
+  lints: ^2.0.0
+  test: ^1.21.0
