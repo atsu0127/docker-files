@@ -42,3 +42,8 @@ Docker 用のファイルを置いておきます
 ### oracle-ords
 
 - Oracle の ORDS および JSON 関係を確認するためのもの
+
+### oracle-gg
+
+- Oracle の GoldenGate Free を検証するためのもの
+- 追ってFreeじゃない方使って PostgreSQL - Oracle とかもやってみたい
