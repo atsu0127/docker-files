@@ -1,0 +1,7 @@
+- name: Install sqlplus
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - oracle-instantclient-release-el8
+    - oracle-instantclient-sqlplus

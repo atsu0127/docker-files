@@ -1,0 +1,7 @@
+all:
+  children:
+    oci:
+      hosts:
+        140.238.58.34:
+      vars:
+        ansible_ssh_user: opc

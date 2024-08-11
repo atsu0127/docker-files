@@ -1,0 +1,8 @@
+- name: Setup oracle golden gate env
+  become: true
+  hosts: oci
+  gather_facts: true
+  roles:
+    - sqlplus
+    - docker
+    - content

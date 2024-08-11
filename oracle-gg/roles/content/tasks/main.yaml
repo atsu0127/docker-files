@@ -1,0 +1,24 @@
+- name: Copy docker-compose.yaml to remote
+  become: false
+  ansible.builtin.copy:
+    src: "{{ playbook_dir}}/docker-compose.yaml"
+    dest: "{{ ansible_env.PWD }}/docker-compose.yaml"
+
+- name: Ensure existence of required directories
+  ansible.builtin.file:
+    state: directory
+    owner: "{{ ansible_env.SUDO_UID }}"
+    group: "{{ ansible_env.SUDO_GID }}"
+    name: "{{ ansible_env.PWD }}/{{ item }}/"
+  loop:
+    - setupScriptSource
+    - setupScriptTarget
+
+- name: Copy setupScript directory to remote
+  become: false
+  ansible.builtin.copy:
+    src: "{{ playbook_dir}}/{{ item }}/"
+    dest: "{{ ansible_env.PWD }}/{{ item }}/"
+  loop:
+    - setupScriptSource
+    - setupScriptTarget
